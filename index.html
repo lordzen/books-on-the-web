@@ -1,8 +1,17 @@
-<!DOCTYPE html><title>Books on the Web</title
-
+<!DOCTYPE html>
 <meta charset=utf-8>
+<title>Books on the Web</title>
 <link rel="stylesheet" type="text/css" href="extras.css" />
 <script src="https://www.w3.org/Tools/respec/respec-w3c-common" async="" class="remove"></script>
+<script>
+    function clean() {
+        document.getElementsByTagName("dt")[1].remove()
+        document.getElementsByTagName("dd")[1].remove()
+        document.getElementById("sotd").getElementsByTagName("p")[0]
+        .textContent = "This document has no official standing of any kind and does not represent the support or consensus of any standards organisation."
+    }
+    setTimeout(clean, 2000)
+</script>
 <style type="text/css">
   code {
     font-size: 120%;
@@ -13,12 +22,7 @@
       shortName:            "books-on-the-web",
       subtitle:             "Living Document",
       edDraftURI:           "https://lordzen.github.io/books-on-the-web",
-      editors:  [
-          {
-              name:       "Zen Smith"
-          ,   mailto:     "lordzen@sideshowbarker.net"
-          }
-      ],
+      editors:              [ { name: "🙂" } ],
       specStatus:           "unofficial",
       // publishDate:  "2015-06-30",
       additionalCopyrightHolders: "Per <a href='https://creativecommons.org/publicdomain/zero/1.0/'>CC0</a>, to the extent possible under law, the editor has waived all copyright and related or neighboring rights to this work. ",
@@ -640,7 +644,7 @@ work should be documented in separate documents.</p>
 </section>
 
 <section>
-  <h2>Achieving convergence: work areas</h2>
+  <h2>Achieving seamless reading experiences</h2>
 
   <p>This section lists some of the work areas that activities around <a>Portable Web Publications</a> should engage in. The list is not exhaustive and there are only hints at the technical solutions; one of the main goals of the work ahead will be to clarify the requirements and technical details. It must be emphasized that the solutions to these problems may not come exclusively from W3C, but possibly from other, external organizations (document identification is a typical example).</p>
 
