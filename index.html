@@ -645,50 +645,72 @@ work should be documented in separate documents.</p>
 <section>
   <h2>Achieving seamless reading experiences</h2>
 
-  <p>This section lists some of the work areas that activities around <a>Portable Web Publications</a> should engage in. The list is not exhaustive and there are only hints at the technical solutions; one of the main goals of the work ahead will be to clarify the requirements and technical details. It must be emphasized that the solutions to these problems may not come exclusively from W3C, but possibly from other, external organizations (document identification is a typical example).</p>
+  <p>This section lists some of the work areas that target the goal of
+  providing users with the best possible user experience of books on the
+  Web, and with <a>Web publications</a> in general.
+
+  <p>The list is not exhaustive and does not attempt to go into specific
+  details of the technical solutions; one of the main goals of the work
+  ahead will be to clarify the requirements and those technical details.
 
   <section id="arch">
-    <h3>General Architecture for Portable Web Publications</h3>
+    <h3>General architecture for books on the Web</h3>
 
-    <p id="sworkers">The latest evolution of browser technologies around Web Workers[[web-workers]] and Service Workers[[service-workers]] may fundamentally change the way browsers operate in terms of offline/online. Service Workers will provide a flexible and programmable way to efficiently implement local caching of <a>Web Resources</a>. Caching is implemented as a programmable network proxy, meaning that the browser’s rendering engine becomes oblivious to whether a resource originates from the local cache or directly from the network. </p>
+    <p id="sworkers">
+    <a href=https://slightlyoff.github.io/ServiceWorker/spec/service_worker/>Service Workers</a>
+    offer the means to provide users with a seamlessly consistent reading
+    experience of a Web publication even if the state of the user’s
+    Internet connection changes and the user drops offline.
 
-    <p>This evolution makes it possible to bring <a>Portable Web Publications</a> under the same abstraction as a <a>Web Resource</a> identified by a URL. A specialized service worker can cache resources, i.e., can bridge the differences between the offline and online access of a document. Furthermore, by adding additional functionalities to the service worker, it can also deal with possible (un)packaging as well as bridging the differences between <a>protocol</a> and <a>file</a> states. In other words, the core rendering engine of a user agent can operate <strong>as if the <a>Portable Web Publication</a> was in <a>unpacked</a> and <a>protocol</a> states, with all resources available</strong>; the differences are handled by the service worker acting as a proxy.</p>
+    <p>
+    Service Workers work by providing programmable local caching of
+    <a>Web resources</a>, acting as a network proxy while a user is offline—in
+    such a way the rest of the browser engine continues to behave just as it
+    did when the user was online, but now with a Service Worker intercepting
+    all network requests for any <a>Web resources</a> that are part of a
+    particular <a>Web publication</a> and automatically re-routing them to
+    be served from the local cache instead.
 
-    <figure style="text-align: center;" id="workers_basic">
-      <img src="figures/Workers-basic.png" alt="A laptop computer gaining access to the unpackaged publication from a web browser connecting to a Server with HTTP requests.">
-      <figcaption>Accessing a <a>Portable Web Publication</a> in an <a>unpacked</a> state directly from the Web. (Picture is available directly <a href="figures/Workers-basic.svg">SVG</a> or <a href="figures/Workers-basic.png">PNG</a> formats.)</figcaption>
-    </figure>
+    <p>
+    The end result for users is that nothing changes: Even while they are
+    offline, their reading experience remains exactly the same—seamlessly
+    consistent, even though the state of their Internet connection has
+    changed.
 
-    <figure style="text-align: center;" id="workers_package">
-      <img src="figures/Workers-package.png" alt="A laptop computer gaining access to the packaged publication from a web browser connecting to a Server via service workers.">
-      <figcaption>Accessing a <a>Portable Web Publication</a> in <a>packed</a> state from the Web via a Service Worker. (Picture is available directly <a href="figures/Workers-package.svg">SVG</a> or <a href="figures/Workers-package.png">PNG</a> formats.)</figcaption>
-    </figure>
+    <p>In this architecture there is absolutely no need for any additional
+    “packing” and “unpacking” steps such as those proposed in
+    <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>.
+    Instead, Service Workers alone can provide that is needed to ensure a
+    seamless reading experience.
 
-    <p class="note">This architecture needs some special care when handling a <a>Portable Web Publication</a> on a local file system. This is because Service Workers operate using the <code>HTTPS</code> (or <code>HTTP</code> for <code>localhost</code>) protocol only, i.e., the <code>file:///</code> protocol is not understood. A possible approach, already implemented in some experimental code, is to start up a local HTTP server serving the resources within the <a>Web Publication</a>. See also <a href="https://github.com/w3c/dpub-pwp/issues/11">Issue 11</a>.</p>
   </section>
 
   <section id="package">
-    <h4>Archive formats</h4>
+    <h4>No requirement for an archive format</h4>
 
-    <p>Regardless of the details of the practical architecture realizing <a>Portable Web Publications</a>, an archive format is necessary for the storage of a publication as one file (e.g., for distribution or possibly archiving) defined as the <a>packed</a> state of a <a>Portable Web Publication</a>. A variety of formats for offline/archival storage of collections of digital resources exist today [[OCF]], [[ODF]], [[OOXML]], but none of them is universally recognized and supported across all ecosystems. Depending on the general architecture, <a>Portable Web Publications</a> may use one of the deployed formats (e.g., the current EPUB packaging format based on [[OCF]]), or an archive format that is generic and native to the Open Web Platform. </p>
+    <p>
+    A Service-Worker-enabled <a>Web publication</a> requires no archiving
+    step in order to remain readable while offline.
 
-    <p>W3C’s <a href="http://www.w3.org/WebPlatform/WG/">Web Platform Working Group</a> has published a Working Draft for a Streamable Package Format for the Web[[web-packaging]] to encompass the needs of various applications (like installing Web Applications or downloading data for local processing). It is not clear at this moment whether browsers will adopt this format, though. </p>
+    So, given that the Web itself can provide a truly universal reading
+    experience even when users are offline, there is no need for any
+    archive format to provide “portability” of a <a>Web publication</a>
+    to off-Web legacy reading systems in the way envisioned in
+    <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>.
 
-    <p>However, the importance of streaming is not paramount for <a>Portable Web Publications</a>. Indeed, the same publication may be accessed by the same user from different clients; if some user-dependent management also keeps track of the latest reading position in the publication, switching from one client to the other may mean that a client would have to “jump” <em>into</em> the content, thereby bypassing streaming. Nevertheless, if browsers, eventually, do converge towards a browser and streaming friendly packaging format, adopting it for <a>Portable Web Publications</a> may become a real alternative. The community will have to balance native browser availability against the the wide availibility of tooling and industry distribution based on [[OCF]].</p>
-
-    <div class="note">
-      <p>The IETF has published an <a href="https://tools.ietf.org/html/draft-seantek-kerwin-arcmedia-type-01">informational draft on a top-level media type for archives</a>. Although that draft does not specify a specific archive format, and the work is currently on hold, it shows the overall interest in packaging on the Web in line with the concerns of <a>Portable Web Publications</a>.</p>
-    </div>
   </section>
 
   <section id="manifest">
-    <h3>Publication Manifests</h3>
+    <h3>No requirement for publication manifests</h3>
 
-    <p>The <dfn>manifest</dfn> of <a>Portable Web Publications</a> is a <a>Web Resource</a> that includes information pertaining to the overall publication structure, such as the default logical reading order(s) of the set of resources that comprise the publication (the “spine”), as well as predictable user-facing meta-structures, such as one or several tables of contents, glossaries, etc. As described in the separate section <a href="#identification"></a> that overall structural information may be what a client would return on a request for a <a>Portable Web Publication</a> instance, as an abstraction for a collection of <a>Web Resources</a>. For <a>Portable Web Publications</a> it may be imperative to optimize these data structures in a way that is native to the Open Web Platform and more easily supported in authoring tools, browsers, and Reading Systems. </p>
+    <p>
+    A Service-Worker-enabled <a>Web publication</a> requires no publication
+    manifest in order to remain readable while offline.
 
-    <p class="note">The Manifest for web application format[[web-manifest]], currently developed at W3C, is one example of a technology that could potentially be used, or adopted, to achieve this goal. Note, however, that the [[web-manifest]] specification is (currently) geared towards Web Applications, which may not make it suitable for direct adoption for <a>Portable Web Publications</a>; hence the possible needs of adoption rather than using it directly.</p>
+    That said, an author or publisher might choose to use a manifest when
+    implementing such a publication, and manifests can be useful for other
+    purposes; they are just not a strict requirement for offline reading.
 
-    <p class="note">Whilst these information objects are important for larger and/or more complex publications, it is unnecessary for other use cases of <a>Portable Web Publications</a>. A typical example is the archival of a single Web page with all the necessary style sheets, images, and similar resources. The definition for <a>Portable Web Publications</a> should therefore include the definition of a set of “defaults”, i.e., it should not require the presence of, say, a spine if the publication contains one single HTML file.</p>
   </section>
 
   <section id="identification">
