@@ -24,6 +24,7 @@
       edDraftURI:           "https://lordzen.github.io/books-on-the-web",
       editors:              [ { name: "🙂" } ],
       specStatus:           "unofficial",
+      maxTocLevel: "2",
       // publishDate:  "2015-06-30",
       additionalCopyrightHolders: "Per <a href='https://creativecommons.org/publicdomain/zero/1.0/'>CC0</a>, to the extent possible under law, the editor has waived all copyright and related or neighboring rights to this work. ",
       copyrightStart: "2016",
@@ -47,7 +48,6 @@
           }]
         },
        ],
-     maxTocLevel: "2",
      doRdfa: "false",
      localBiblio: {
         "EPUB3": {
@@ -654,7 +654,7 @@ work should be documented in separate documents.</p>
   ahead will be to clarify the requirements and those technical details.
 
   <section id="arch">
-    <h3>General architecture for books on the Web</h3>
+    <h3>General architecture and demo</h3>
 
     <p id="sworkers">
     <a href=https://slightlyoff.github.io/ServiceWorker/spec/service_worker/>Service Workers</a>
@@ -677,16 +677,38 @@ work should be documented in separate documents.</p>
     consistent, even though the state of their Internet connection has
     changed.
 
-    <p>In this architecture there is absolutely no need for any additional
+    <p>
+    In this architecture there is absolutely no need for any additional
     “packing” and “unpacking” steps such as those proposed in
     <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>.
-    Instead, Service Workers alone can provide that is needed to ensure a
-    seamless reading experience.
+    Instead, Service Workers alone can provide all that is needed to ensure
+    a seamless reading experience.
+
+    <p>
+    A proof-of-concept demo of a Service-Worker-offline-enabled Web
+    publication is available at the following site:
+
+    <p>
+    <a href=https://lordzen.github.io/offline-book-demo/publications/readme/>https://lordzen.github.io/offline-book-demo/publications/readme/</a>
+
+    <p>
+    That demo is a modified version of an earlier demo developed by
+    <a href=https://twitter.com/jaffathecake>Jake Archibald</a>.
+    Jake has also created another demo that uses Service Workers in the
+    same way to allow you to create your own custom “book” of Wikipedia pages
+    to take offline for reading anywhere:
+
+    <p>
+    <a href=https://wiki-offline.jakearchibald.com/>https://wiki-offline.jakearchibald.com/</a>
+
+    <p>
+    It’s easy to imagine many other interesting demonstrations for making
+    existing content readable offline.
 
   </section>
 
   <section id="package">
-    <h4>No requirement for an archive format</h4>
+    <h3>No archive format needed</h3>
 
     <p>
     A Service-Worker-enabled <a>Web publication</a> requires no archiving
@@ -701,7 +723,7 @@ work should be documented in separate documents.</p>
   </section>
 
   <section id="manifest">
-    <h3>No requirement for publication manifests</h3>
+    <h3>No publication manifests needed</h3>
 
     <p>
     A Service-Worker-enabled <a>Web publication</a> requires no publication
@@ -714,7 +736,7 @@ work should be documented in separate documents.</p>
   </section>
 
   <section id="identification">
-    <h3>Addressing and Identification</h3>
+    <h3>No special addressing/identification needed</h3>
 
     <p>HTTP(S) URLs serve as the fundamental method for addressing a resource, or a fragment thereof, on the Web. Such URLs can also be used to uniquely <em>identify</em> a resource; however, conceptually, the role of addressing and identification are different. <em>Both</em> of these functionalities should be available for <a>Portable Web Publications</a>: a publication should be uniquely identified for, e.g., library catalogues or archival, and a resource locator should be available so that the user could access the content. In other words, a <a>Web Publication</a> (whether portable or not) SHOULD have both one or even possibly several <em>identifier(s)</em> and one <em>locator</em>. These may be be identical but may also be different: e.g., an identifier may refer to a specific publication by a publisher (e.g., using an <a href="https://www.isbn-international.org/">ISBN</a>), whereas the locator may refer to a personal copy of that publication that the owner can freely annotate for personal use.</p>
 
@@ -768,7 +790,7 @@ work should be documented in separate documents.</p>
    </section>
 
   <section id="metadata">
-    <h3>Metadata: discovery</h3>
+    <h3>No special metadata needed</h3>
     <p>Throughout the digital publishing industry, highly specialized metadata vocabularies, and serialization forms thereof, are being used. Within book trade publishing as an example, ONIX[[ONIX]] has attained a dominant status as a metadata package that typically exists (in XML form) independently of the publication, and contains not only bibliographic metadata, but also trade information such as pricing. Scholarly publishing, on the other hand, often uses various derivatives of the ubiquitous BibTeX vocabulary.</p>
 
     <p>While not contradicting the obvious use cases for out-of-line metadata records as used by publishers, retailers and libraries, <a>Portable Web Publications</a> must define a syntax for basic in-line metadata records that is agnostic to the publication’s states. This means that the syntax must seamlessly support discovery and harvesting by both generic Web search engines, as well as dedicated bibliographic/archival/retailer systems. While it is expected that <a>Portable Web Publications</a> will define a minimal set of required metadata (cf. the section <a href="#identification"></a>), development and adoption of other vocabularies in <a>Portable Web Publications</a> will most likely be deemed as out of scope. In other words, domain-specific metadata requirements are up to the domains themselves to define via a profiling mechanism, or similar yet-to-be-defined means. </p>
