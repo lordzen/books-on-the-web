@@ -32,6 +32,14 @@
       noRecTrack : "true",
       otherLinks: [
         {
+          key: "Demo",
+          data: [
+          {
+            value: "https://lordzen.github.io/offline-book-demo/",
+            href: "https://lordzen.github.io/offline-book-demo/"
+          }]
+        },
+        {
           key: "Related resources",
           data: [
           {
@@ -738,87 +746,119 @@ work should be documented in separate documents.</p>
   <section id="identification">
     <h3>No special addressing/identification needed</h3>
 
-    <p>HTTP(S) URLs serve as the fundamental method for addressing a resource, or a fragment thereof, on the Web. Such URLs can also be used to uniquely <em>identify</em> a resource; however, conceptually, the role of addressing and identification are different. <em>Both</em> of these functionalities should be available for <a>Portable Web Publications</a>: a publication should be uniquely identified for, e.g., library catalogues or archival, and a resource locator should be available so that the user could access the content. In other words, a <a>Web Publication</a> (whether portable or not) SHOULD have both one or even possibly several <em>identifier(s)</em> and one <em>locator</em>. These may be be identical but may also be different: e.g., an identifier may refer to a specific publication by a publisher (e.g., using an <a href="https://www.isbn-international.org/">ISBN</a>), whereas the locator may refer to a personal copy of that publication that the owner can freely annotate for personal use.</p>
+    <p>
+    URLs (generally HTTP/HTTPS URLs) serve as universal addresses for
+    resources on the Web. Books on the Web and all other <a>Web
+    publications</a> are simply just websites, with URLs that are identify
+    them. Therefore, books on the Web come with no special addressing
+    needs. In terms of addressing and identification, books on the Web
+    benefit from the same universality that all other Web resources enjoy.
 
-    <p class="note">A typical, and extremely important use case for the presense of an <em>identifier</em> beyond the need for a <em>locator</em> is in academic and scholarly publishing. There are currently several methods for citing online works, but there is no equivalent standard method for citations to ebooks. Even if a reflowable ebook is by a scholar, the author must refer to PDF, paper copy, or HTML version to cite it in her bibliography. Identifiers attached to <a>Portable Web Publications</a> should enable stable citations.</p>
+    <p>
+    Even when a user is offline, the user can read a previously-fetched
+    Service-worker-offline-enabled book simply by navigating to that book’s
+    universal address in a normal Web browser—that is, by browsing back to
+    the same URL from which the user originally fetched the book for
+    reading. When offline, the browser essentially uses an internal catalog
+    to automatically map the URL for the book and the URLs for all its
+    constituent resources to locally-cached locations from which it fetches
+    the resources, rather then (re)fetching them over the Internet.
 
-    <div class="note">
-      <p>A general [[URI]] (which includes the notion of [[URL]]) can serve as an <em>identifier</em> using, e.g., the [[ISBN-URN]] or [[UUID]] schemes. In other words, an identifier does not necessarily resolves to a location on the Web, although it is a good practice to have a dereferencable identifier.</p>
-
-      <p> There is no  ubiquitously accepted method for identifying a publication among the various document formats (whether electronic or printed). Within the scholarly publishing industry, for example, initiatives such as <a href="http://www.doi.org">DOI</a> and <a href="http://crossref.org">CROSSREF</a> have addressed this problem, whereas traditional “trade” publishing rely more on <a href="https://www.isbn-international.org/">ISBN</a> related services. Some of these identifier schemes provide resolver services or a “standard” representation in term of [[URL]]. The definition of <a>Portable Web Publication</a> should be oblivious to the exact identification used; this issue is left to specialized services and industry organizations. </p>
-    </div>
-
-    <div class="issue" data-number="12">Do we need a more general form of identification to represent scopes?</div>
-
-    <p>For the purpose of the general architecture of <a>Portable Web Publications</a> this document concentrates on <em>locators</em>; as far as identifiers are concerned, the only important point is that such identifier SHOULD also exist and made available, and that they should be stable across, for example, copying the publication or changing its location on the Web. Also, based on the discussion in <a href="#arch"></a>, only the <a>unpacked</a> and <a>protocol</a> states of <a>Portable Web Publications</a> are discussed.</p>
-
-    <p>There are a number of different aspects of addressing that should be specified for a <a>Portable Web Publication</a>. Some of these are follows:</p>
-
-    <section>
-      <h4>What should be the response of an HTTP(S)&nbsp;GET request?</h4>
-      <p>Conceptually, it should be the <a>manifest</a> of the publication which, in fact, “represents” the <a>Web Publication</a> as a whole. In practice, this means providing access to the corresponding manifest file through either:</p>
-
-      <ul class="definition">
-        <li>returning the <a>manifest</a> itself; or</li>
-        <li>returning another content (e.g., the first chapter in the document) but providing a link to the <a>manifest</a> through a <code>LINK:</code> in the HTTP response header; or</li>
-        <li>returning and HTML content (e.g., the first chapter in the document) but providing a link to the <a>manifest</a> through a <code>&lt;link&gt;</code> element.</li>
-      </ul>
-
-      <p>These possibilities are not mutually exclusive.</p>
-    </section>
-
-    <section>
-      <h4>What is the URL for one of the resources <em>within</em> a <a>Portable Web Publication</a>?</h4>
-
-      <p>I.e.: if the <code>http://www.ex.org/doc.pwp</code> locator refers to the <a>Portable Web Publication</a> as a whole, what is the URL for one of its constituent resources, e.g., <code>chapter1.html</code>?</p>
-
-      <p>The simplest approach is to consider the URL of the <a>Web Publication</a> as the base for all relative URL-s, meaning that the location of the constituents are of the form: <code>http://www.ex.org/doc.pwp/chapter1.html</code> where <code>http://www.ex.org/</code> is the URL of the the <a>Web Publication</a> itself. In other words, the locator of the <a>Web Publication</a> sets the “context”.</p>
-
-      <p>This simple approach works well if the <a>Web Publication</a> is created from bottom up; however, it does rely on a particular organization of the resources. The scheme does not work if the <a>Web Publication</a> (which is defined to be a set of <a>Web Resources</a>) includes resources at many different places on the Web. This issue may be mitigated by adding mappings (“virtual redirections”) of URLs in the <a>manifest</a> of the <a>Web Publication</a>.</p>
-
-      <p class="note">When using the virtual redirections a particular constituent <a>Web Resource</a> may end up having two URL-s: one is its intrinsic URL as a resource on the Web, the other via the URL of the <a>Web Publication</a>.</p>
-
-      <p class="note">Another alternative that is used in practice is to use an explicit separator between the URL for the publication and the rest, yielding, e.g., <code>http://www.ex.org/doc.pwp!chapter1.html</code>. It is not clear what advantages this approach would have.</p>
-    </section>
-
-    <section>
-      <h4>How does one locate the internal content of a particular constituent resource?</h4>
-        <p>The definition of <a>Web Publications</a> should not include any new mechanism at this point; they should rather entirely rely on fragment identifiers as defined and widely used on the Web.</p>
-
-        <p class="note">As examples for the power of fragment identifiers, the <a href="http://www.w3.org/annotation/">W3C Annotation Working Group</a> has a joint deliverable with the <a href="http://www.w3.org/WebPlatform/WG/">W3C Web Platform Working Group</a> called [[FindText]]. Although the specification aims at a programmable API, it may also provide a general framework of identifying specific textual content within, e.g., and HTML file through the definion of a fragment identifier. Similarly, the W3C Media Fragments specification[[media-frags]] may prove useful to address some of the use cases. </p>
-    </section>
-   </section>
+  </section>
 
   <section id="metadata">
     <h3>No special metadata needed</h3>
-    <p>Throughout the digital publishing industry, highly specialized metadata vocabularies, and serialization forms thereof, are being used. Within book trade publishing as an example, ONIX[[ONIX]] has attained a dominant status as a metadata package that typically exists (in XML form) independently of the publication, and contains not only bibliographic metadata, but also trade information such as pricing. Scholarly publishing, on the other hand, often uses various derivatives of the ubiquitous BibTeX vocabulary.</p>
 
-    <p>While not contradicting the obvious use cases for out-of-line metadata records as used by publishers, retailers and libraries, <a>Portable Web Publications</a> must define a syntax for basic in-line metadata records that is agnostic to the publication’s states. This means that the syntax must seamlessly support discovery and harvesting by both generic Web search engines, as well as dedicated bibliographic/archival/retailer systems. While it is expected that <a>Portable Web Publications</a> will define a minimal set of required metadata (cf. the section <a href="#identification"></a>), development and adoption of other vocabularies in <a>Portable Web Publications</a> will most likely be deemed as out of scope. In other words, domain-specific metadata requirements are up to the domains themselves to define via a profiling mechanism, or similar yet-to-be-defined means. </p>
+    <p>
+    No special metadata is required to enable users to read a Web book or
+    other <a>Web publication</a> offline. Because the state of a Web
+    publication never changes whether the user is online or offline (only
+    the state of the user’s Internet connection changes), and because to be
+    readable offline, a Service-Worker-enabled Web publication never actually
+    needs to leave the Web—in contrast to scenarios outlined in
+    <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>
+    where users are instead essentially required to have redundant “packed”
+    copies of Web publications just to be able to read them offline, in
+    separate off-Web reading systems—there are no special metadata requirements
+    necessary for the scenario where a user is forced into using an off-Web
+    copy of a Web publication. Such requirements are avoided just by never
+    forcing users into needing to use off-Web copies.
 
-    <p class="note">The adoption of HTML as the vehicle for expressing publication-level metadata (i.e., using RDFa[[html-rdfa]] and/or Microdata[[microdata]] for metadata, like authors or title) would have the added benefits of better I18N support than XML or JSON formats.</p>
   </section>
 
   <section id="styling">
-    <h3>Styling and Layout, Pagination</h3>
-    <p>As outlined in [[dpub-latinreq]] or [[dpub-css-priorities]], the Open Web Platform in general, and CSS in particular, is still lacking solutions for meeting all of the publishers’ expectations on satisfactory typography and layout for digital publications. While improved presentation fidelity will be of paramount importance to the overall success and adoption rate of <a>Portable Web Publications</a>, it is clear that many of these issues are going to be addressed on a case-by-case basis by the CSS Working Group over a longer period of time. STM publishing, for example, where the faithful representation and rendering of, say, mathematical or chemical formulae is of a paramount importance, has particularly severe requirements that must be fulfilled by the Open Web Platform technologies. Similarly, dynamic pagination of reflowable content is not natively supported by browsers today, and as a result Reading System developers, for example, are forced to implement pagination using various ad-hoc approaches, all coming with a significant penalty in terms of development costs, performance and stability.</p>
+    <h3>No new styling/layout/pagination needed</h3>
 
-    <p>It is anticipated that native support for pagination (in CSS and/or in the DOM) is going to be put forward by stakeholders as a critical component of <a>Portable Web Publications</a>; thus the finalization of <a>Portable Web Publications</a> may be contingent on the availability of a native pagination model for Web content.</p>
+    <p>
+    The requirements for taking the hard-copy printed-page conventions
+    of paper books and other paged media and emulating them on the Web are
+    either largely already known or are the subject of ongoing discussion
+    in the W3C CSS Working Group. What mostly remains is just for
+    browser-engine projects to implement support for solutions that have
+    already been specified, and to continue working with other participants
+    in the CSS Working Group to get the remaining solutions identified.
+    Direct discussion in the CSS Working Group is the most productive means
+    to ensure the necessary requirements get identified and addressed.
 
-    <p class="note">Note that the <a href="https://wiki.css-houdini.org/">“Houdini” Task Force</a>, recently started jointly by the W3C CSS WG and the W3C TAG, may open new avenues to handle pagination.</p>
+    <p>
+    Regardless, the requirement to make <a>Web publications</a> readable
+    offline—whether in the way outlined in this document or in the
+    contrary way envisioned in
+    <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>—is
+    completely orthogonal to any styling, layout, and pagination
+    requirements. In other words, making Web publications readable by users
+    offline introduces no new styling, layout, or pagination needs.
   </section>
 
   <section>
-    <h3>Security Models</h3>
+    <h3>No new security model needed</h3>
 
-    <p>The security model of the Web, based primarily on the same-origin policy and the concept of “site”, does not apply to portable documents, as the notion of “origin” is based on HTTP properties that are invalidated/non-existent when a document transitions from its online state to the portable state. Portable Web Publications must incorporate a state agnostic security model that defines rules for both the online and portable states.</p>
+    <p>Service-worker-offline-enabled books on the Web are simply websites
+    that are served to users under the standard Web security model whether
+    the user is online or offline. So, in contrast to the scenarios
+    envisioned in
+    <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>
+    where users are required to use separate off-Web reading systems in
+    order to read documents offline—which would necessitate creating a
+    corresponding off-Web security model of some kind—no new security model
+    is needed.
+
   </section>
 
   <section>
-    <h3>Presentation Control and Personalization</h3>
+    <h3>No standard personalization control needed</h3>
 
-    <p>When reading long-form (and sometimes mission-critical) publications, personalization—i.e., the ability for users to adapt the presentation to suit their needs—is of a great importance. While technologies such as CSS Media Queries have come a long way in terms of adapting content to devices, this is not the same thing as adapting to a user. Presentation control features are often available in e-book readers of different kinds, for example the possibility to dynamically change font size or background/foreground color schemes, but implementations are brittle and limited due to the lack of an underlying framework that explicitly supports user adaptation.</p>
+    <p>
+    The requirement to make <a>Web publications</a> readable offline—whether
+    in the way outlined in this document or the contrary way envisioned in
+    <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>—is
+    completely orthogonal to user abilities to personalize the presentation of
+    a publication by adapting it to suit their needs.
 
-    <p><a>Portable Web Publications</a> needs to incorporate an explicit framework for achieving advanced and predictable user-triggered presentation control. (Note that from this perspective, accessibility can be seen just a radical case of personalization.)</p>
+    <p>
+    Web browsers already provide some degree of built-in capabilities for
+    users to personalize the presentation of Web publications as they read
+    them (for example, to dynamically change font size as they read), and
+    third-party browser extensions are also available for users to
+    have a greater level of control over such presentation-related
+    personalization (for example, to dynamically change background/foreground
+    color schemes).
+
+    <p>
+    Authors and publishers of Web publications can also innovate in this
+    area, by using JavaScript to enable their own built-in personalization
+    controls in the publications they provide to users. And JavaScript
+    library developers can create shared libraries for authors and
+    publishers to use for enabling such personalization controls.
+
+    <p>
+    So while there’s no disagreement on the value of users being provided
+    with presentation-related personalization controls, there is no agreement
+    to require any standard mechanisms for doing it. Instead, browser projects,
+    extension developers, JavaScript-library developers, as well as authors and
+    publishers can all innovate and compete in this area to try to produce
+    the best possible user experience around such personalization.
+
   </section>
 
   <section>
