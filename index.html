@@ -4,18 +4,33 @@
 <link rel="stylesheet" type="text/css" href="extras.css" />
 <script src="https://www.w3.org/Tools/respec/respec-w3c-common" async="" class="remove"></script>
 <script>
+    function asterisk(elements) {
+        for (var i = 0; i < elements.length; ++i) {
+            elements[i].textContent = "＊"
+        }
+    }
     function clean() {
         document.getElementsByTagName("dt")[1].remove()
         document.getElementsByTagName("dd")[1].remove()
         document.getElementById("sotd").getElementsByTagName("p")[0]
           .textContent = "This document has no official standing of any kind and does not represent the support or consensus of any standards organisation.";
-        document.querySelector("[href='#bib-Service-Workers']").textContent = "＊"
+        asterisk(document.querySelectorAll("[href='#bib-Service-Workers']"))
+        asterisk(document.querySelectorAll("[href='#bib-EPUB']"))
+        asterisk(document.querySelectorAll("[href='#bib-Universality']"))
+        asterisk(document.querySelectorAll("[href='#bib-Priority-of-Constituencies']"))
     }
     setTimeout(clean, 2000)
 </script>
 <style type="text/css">
   code {
     font-size: 120%;
+  }
+  a.internalDFN {
+    font-style: normal;
+    border-bottom: 1px solid #99c !important;
+  }
+  body {
+     margin-bottom: 800px !important;
   }
 </style>
 <script class="remove">
@@ -26,7 +41,6 @@
       editors:              [ { name: "🙂" } ],
       specStatus:           "unofficial",
       maxTocLevel: "2",
-      // publishDate:  "2015-06-30",
       additionalCopyrightHolders: "Per <a href='https://creativecommons.org/publicdomain/zero/1.0/'>CC0</a>, to the extent possible under law, the editor has waived all copyright and related or neighboring rights to this work. ",
       copyrightStart: "2016",
       issueBase: "https://github.com/lordzen/books-on-the-web/issues",
@@ -68,6 +82,21 @@
             ],
             "title": "Service Workers",
             "href" : "https://slightlyoff.github.io/ServiceWorker/spec/service_worker/"
+        },
+        "Universality": {
+            "authors": [
+              "Tim Berners-Lee",
+            ],
+            "title": "The World Wide Web - Past Present and Future: Exploring Universality",
+            "href" : "https://www.w3.org/2002/04/Japan/Lecture.html"
+        },
+        "Priority-of-Constituencies": {
+            "authors": [
+              "Anne van Kesteren",
+              "Maciej Stachowiak",
+            ],
+            "title": "Priority of Constituencies",
+            "href" : "https://www.w3.org/TR/html-design-principles/#priority-of-constituencies"
         },
         "EPUB": {
             "authors": [
@@ -233,21 +262,21 @@
   books on the Web with that of legacy reading systems. Instead, this
   document starts by reminding all that the fundamental quality of the Web,
   consciously designed into it by its creator from its very creation, is
-  <i>Universality</i>.
+  <a href="https://www.w3.org/2002/04/Japan/Lecture.html">Universality</a>.
   <p>
   This document outlines how to draw on that fundamental quality of
-  Universality designed into the Web’s soul to build a user-first
+  <a href="https://www.w3.org/2002/04/Japan/Lecture.html">Universality</a>
+  designed into the Web’s soul to build a user-first, <i>universal</i>
   reading experience for books on the Web based the principle of the
-  <a href="https://www.w3.org/TR/html-design-principles/#priority-of-constituencies">Priority of Constituencies</a>,
+  <a href="https://www.w3.org/TR/html-design-principles/#priority-of-constituencies">Priority of Constituencies</a>[[Priority-of-Constituencies]],
   always putting the needs of users first—above the needs of any other
   constituency.
 </section>
 
 <section id='sotd'>
-  <p>This document outlines a general vision and should not be considered a
-technical specification. Instead, its goal is to outline that vision and
-the possible technical directions to achieve it; more detailed technical
-work should be documented in separate documents.</p>
+  <p>This document outlines a particular vision. It is not a technical
+  specification, but it does describe a specific technical direction
+  for making the vision a reality.
 </section>
 
 <section>
@@ -312,10 +341,11 @@ work should be documented in separate documents.</p>
     itself—through
     <a href=https://slightlyoff.github.io/ServiceWorker/spec/service_worker/>Service Workers</a>—provides
     users with the possibility to automatically have, in an easy manner,
-    offline access at any time, anywhere, to any Web publication they are reading.
+    offline access at any time, anywhere, to any <a>Web publication</a> they
+    are reading.
 
-    <p>So the best possible user experience can now be provided to readers
-    just through the power of the Web. A truly universal reading experience.
+    <p>So the best possible user experience can now be provided to readers just
+    through the power of the Web. A truly <i>universal</i> reading experience.
 
     <section>
     <h4>Secondary constituencies</h4>
@@ -335,8 +365,10 @@ work should be documented in separate documents.</p>
       <p>Collaboration between the Web content development and publishing
       communities will result in major benefits to publishers. Moving to
       a truly user-first model of <a>books on the Web</a> that takes full
-      advantage of the universality of the Web means publishers can concentrate
-      on engaging content authors in the production of high quality content.
+      advantage of the
+      <a href="https://www.w3.org/2002/04/Japan/Lecture.html">universality</a>[[Universality]]
+      of the Web means publishers can concentrate on engaging content
+      authors in the production of high quality content.
 
       <p>The web-content development community can be relied on to deal
       with sophisticated technical issues (e.g., CSS, SVG). Potential
@@ -402,7 +434,7 @@ work should be documented in separate documents.</p>
 
       <p>And as those tools evolve to actually put the needs of their scholarly
       users first, any requirement for authors to be forced to try to duplicate
-      Web publications into redundant offline versions of the same
+      <a>Web publications</a> into redundant offline versions of the same
       content—in order to compensate for deficiencies and short-sightedness in
       the user model—will disappear.
 
@@ -412,7 +444,8 @@ work should be documented in separate documents.</p>
       by the scholar online or offline directly in Web applications running in a
       normal mobile browser on small, mobile devices—with no need for a separate
       redundant off-Web version of a publication, and so no need to ever be
-      forced to have to synchronize the Web publication with any off-Web version.
+      forced to have to synchronize the <a>Web publication</a> with any off-Web
+      version.
 
       <p>The transformative effects of moving to a Web-first model that truly
       places the needs of users above all else will fundamentally change
@@ -438,17 +471,17 @@ work should be documented in separate documents.</p>
       <a>books on the Web</a> will provide new possibilities for these types of
       in-house publications. Using
       <a href=https://slightlyoff.github.io/ServiceWorker/spec/service_worker/>Service Workers</a>,
-      a Web publication can be made fully usable even when offline—in, for
+      a <a>Web publication</a> can be made fully usable even when offline—in, for
       example, an airplane cockpit.
 
       <dt>Libraries and archival services</dt>
       <dd>
       <p>The archiving of digital assets is coming to the fore as a
       significant issue for dedicated institutions like national libraries. With
-      the arrival of highly dynamic and possibly interactive Web publications as
-      primary content, the traditional means of archiving (i.e., storing on some
+      the arrival of highly dynamic and possibly interactive <a>Web publications</a>
+      as primary content, the traditional means of archiving (i.e., storing on some
       backup device for long term preservation) is no longer adequate.
-      Web publications depend on a multitude of auxiliary files, like CSS
+      <>Web publications</a> depend on a multitude of auxiliary files, like CSS
       stylesheets, images, videos, JavaScript programs, etc. The good news is
       that the Web itself already provides the means for archiving such
       publications, and there will be large growth in business opportunities
@@ -536,14 +569,14 @@ work should be documented in separate documents.</p>
       system. So the term <i>books on the Web</i> is meant to convey the
       lack of any need for a packaging mechanism like the one on which
       the vision in
-      <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>,
+      <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>
       is premised.
 
       <p>
       If specialized reading systems are made superfluous, then there is no
-      need for a “portable” package format for Web publications; instead, books
-      and other publications can be universally accessed as 100% true
-      <a>Web publications</a>—that is, just as <i>books on the Web</i>.
+      need for a “portable” package format for <a>Web publications</a>;
+      instead, books and other publications can be universally accessed as
+      100% true <a>Web publications</a>—that is, just as <i>books on the Web</i>.
 
       <li>A <dfn data-lt="Web Publication|Web Publications">Web Publication</dfn>
       is a <a>Web Resource</a> which itself is an aggregated set of
@@ -601,8 +634,8 @@ work should be documented in separate documents.</p>
 
     <p class="note">The concepts of <a>content</a>, <a>essential
     content</a>, and <a>functionality</a> have been taken from the W3C
-    <i>Web Content Accessibility Guidelines</i> [[WCAG20]], thought slightly
-    modified for this context.</p>
+    <a href=http://www.w3.org/TR/WCAG20/>Web Content Accessibility Guidelines</a>,
+    though slightly modified for this context.</p>
 
   </section>
 
@@ -610,8 +643,8 @@ work should be documented in separate documents.</p>
     <h3>Offline contexts for Web publications</h3>
 
     <p>It is important to understand that in order to be made available to
-    users for reading offline, a Web publication never needs to
-    go through any explicit transformation—specifically, a Web publication
+    users for reading offline, a <a>Web publication</a> never needs to
+    go through any explicit transformation—specifically, a <a>Web publication</a>
     never needs to be packaged up into a “packed” off-Web format in the way
     described in
     <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>,
@@ -658,7 +691,7 @@ work should be documented in separate documents.</p>
   <p>This section provides details of an approach for providing users with
   the best possible user experience of <a>books on the Web</a>, and with
   <a>Web publications</a> in general—regardless of the state of users’
-  connections to the Internet. It also list a number of non-requirements
+  connections to the Internet. It also lists a number of non-requirements
   that don’t need to be considered when designing reading experiences for users
   that remain seamlessly consistent whether the users are online or offline.
 
@@ -666,10 +699,9 @@ work should be documented in separate documents.</p>
     <h3>General architecture and demo</h3>
 
     <p id="sworkers">
-    <a href=https://slightlyoff.github.io/ServiceWorker/spec/service_worker/>Service Workers</a>
-    [[Service-Workers]]
+    <a href=https://slightlyoff.github.io/ServiceWorker/spec/service_worker/>Service Workers</a>[[Service-Workers]]
     offer the means to provide users with a seamlessly consistent reading
-    experience of a Web publication even if the state of the user’s
+    experience of a <a>Web publication</a> even if the state of the user’s
     Internet connection changes and the user drops offline.
 
     <p>
@@ -754,7 +786,9 @@ work should be documented in separate documents.</p>
     publications</a> are simply just websites, with URLs that are identify
     them. Therefore, <a>books on the Web</a> come with no special addressing
     needs. In terms of addressing and identification, <a>books on the Web</a>
-    benefit from the same universality that all other Web resources enjoy.
+    benefit from the same
+    <a href="https://www.w3.org/2002/04/Japan/Lecture.html">universality</a>[[Universality]]
+    that all other Web resources enjoy.
 
     <p>
     Even when a user is offline, the user can read a previously-fetched
@@ -776,15 +810,15 @@ work should be documented in separate documents.</p>
     or other <a>Web publication</a> offline. Because the state of a Web
     publication never changes whether the user is online or offline (only
     the state of the user’s Internet connection changes), and because to be
-    readable offline, a Service-Worker-enabled Web publication never actually
-    needs to leave the Web—in contrast to scenarios outlined in
+    readable offline, a Service-Worker-enabled <a>Web publication</a> never
+    actually needs to leave the Web—in contrast to scenarios outlined in
     <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>
     where users are instead essentially required to have redundant “packed”
-    copies of Web publications just to be able to read them offline, in
+    copies of <a>Web publications</a> just to be able to read them offline, in
     separate off-Web reading systems—there are no special metadata requirements
     necessary for the scenario where a user is forced into using an off-Web
-    copy of a Web publication. Such requirements are avoided just by never
-    forcing users into needing to use off-Web copies.
+    copy of a <a>Web publication</a>. Such requirements are avoided just by
+    never forcing users into needing to use off-Web copies.
 
   </section>
 
@@ -808,8 +842,8 @@ work should be documented in separate documents.</p>
     contrary way envisioned in
     <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>—is
     completely orthogonal to any styling, layout, and pagination
-    requirements. In other words, making Web publications readable by users
-    offline introduces no new styling, layout, or pagination needs.
+    requirements. In other words, making <a>Web publications</a> readable by
+    users offline introduces no new styling, layout, or pagination needs.
   </section>
 
   <section>
@@ -839,16 +873,16 @@ work should be documented in separate documents.</p>
 
     <p>
     Web browsers already provide some degree of built-in capabilities for
-    users to personalize the presentation of Web publications as they read
-    them (for example, to dynamically change font size as they read), and
-    third-party browser extensions are also available for users to
+    users to personalize the presentation of <a>Web publications</a> as they
+    read them (for example, to dynamically change font size as they read),
+    and third-party browser extensions are also available for users to
     have a greater level of control over such presentation-related
     personalization (for example, to dynamically change background/foreground
     color schemes).
 
     <p>
-    Authors and publishers of Web publications can also innovate in this
-    area, by adding JavaScript code to enable their own built-in
+    Authors and publishers of <a>Web publications</a> can also innovate in
+    this area, by adding JavaScript code to enable their own built-in
     personalization controls in publications they provide to users. And
     JavaScript library developers can create shared libraries for authors and
     publishers to use for enabling such personalization controls.
@@ -888,8 +922,8 @@ work should be documented in separate documents.</p>
 
     <p>
     Instead, innovation in the area of addressing domain-specific user
-    expectations for Web publications can and will just continue naturally
-    in the market at the hands of JavaScript library creators,
+    expectations for <a>Web publications</a> can and will just continue
+    naturally in the market at the hands of JavaScript library creators,
     browser-extension developers, and authors and publishers themselves—as
     they compete and collaborate on new ideas about how to make the best
     possible user experiences for readers, as selling points to set their
@@ -914,7 +948,7 @@ work should be documented in separate documents.</p>
   idea envisioned in
   <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>
   (the original title of which was in fact
-  <a href=https://w3c.github.io/epubweb/>EPUB+WEB</a>.)
+  <a href=https://w3c.github.io/epubweb/>EPUB+WEB</a>).
 
   <p>
   As an older format that was developed outside the W3C for use in
@@ -929,8 +963,8 @@ work should be documented in separate documents.</p>
   underlying it have increasingly faced criticism for not being at all a
   good match for current user needs; for one representative example, see
   the article
-  “<a href=http://toc.oreilly.com/2013/02/the-publishing-industry-has-a-problem-and-epub-is-not-the-solution.html>The publishing industry has a problem, and EPUB is not the solution</a>”
-  [[EPUB]] from Jani Patokallio (who at the time he wrote the article was
+  “<a href=http://toc.oreilly.com/2013/02/the-publishing-industry-has-a-problem-and-epub-is-not-the-solution.html>The publishing industry has a problem, and EPUB is not the solution</a>”[[EPUB]]
+  from Jani Patokallio (who at the time he wrote the article was
   working for the publisher Lonely Planet, and now works for Google).
 
   <p>
@@ -939,19 +973,21 @@ work should be documented in separate documents.</p>
   since users have commonly had smartphones and tablets with full Web
   capabilities for years now, there is no longer any user requirement for
   specialized low-capability devices just to read electronic books, nor for
-  legacy off-Web specialized reading systems—and so no longer any relevance
-  for EPUB as a format, nor more generally for any EPUB-inspired
+  legacy off-Web specialized reading systems—and so going forward into the
+  future, there is no need for EPUB as a format, nor more generally for
+  any EPUB-inspired
   <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publication</a>
   format as envisioned in
   <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>.
 
   <p>
-  Instead what is needed is to look at the actual current user needs
+  Instead what we should do is to look at the actual current user needs
   without concern for any existing legacy formats, and to start back from
   first principles and design fresh solutions—with the absolute highest
   priority given to user needs, over all other constituencies—and with the
-  goal being purely to provide the best possible user experience of books on
-  the Web and other <a>Web publications</a> to users today and for the future.
+  goal being purely to provide the best possible user experience of
+  <a>books on the Web</a> and other <a>Web publications</a> to users today
+  and for the future.
 
   <p>
   That is what this document does.
@@ -959,8 +995,37 @@ work should be documented in separate documents.</p>
 
 <section>
   <h2>Conclusions</h2>
-  <p>This document outlines a vision for the convergence between the Open Web Platform and portable documents while also significantly advancing and expanding the existing digital publishing ecosystem. The realization of this vision would require a strong cooperation between the traditional publishing and Web communities, based on a close collaboration between the W3C and other relevant organizations, like <a href="http://idpf.org">IDPF</a>, <a href="http://editeur.org/">EDItEUR</a>, <a href="http://www.bisg.org">BISG</a>, or others. While it is envisaged that most of the work could be done in one or more dedicated Working Groups (within W3C or elsewhere, depending on the exact charter), it must be emphasized that many of the features will affect and will be affected by work done elsewhere, within or outside these organizations. The starting point will be to explore and plan for the detailed technical challenges to gain a better insight into the work ahead; this exploration should be done together with the various interested communities.
-  </p>
+  <p>
+  This document outlines a vision for achieving the best possible user
+  experience for readers of <a>books on the Web</a> and other
+  <a>Web publications</a>, by looking at the problem from a fresh
+  perspective—starting from first principles.
+
+  <p>
+  So in this vision there is no need for “convergence” with other legacy
+  off-Web approaches, nor any need to require users to ever “switch” back and
+  forth between the Web and legacy off-Web reading systems, and no need for a
+  new “portable” document format, and in particular no need for an
+  EPUB-inspired
+  “<a href=https://w3c.github.io/epubweb/>EPUB+WEB</a>”
+  <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publication</a>
+  idea as envisioned in
+  <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>.
+
+  <p>
+  Instead as outlined here we can use
+  <a href=https://slightlyoff.github.io/ServiceWorker/spec/service_worker/>Service Workers</a>
+  and the Web’s fundamental quality of
+  <a href="https://www.w3.org/2002/04/Japan/Lecture.html">universality</a>[[Universality]]
+  as the foundation to provide users with a user-optimized seamless
+  reading experience of <a>books on the Web</a> and other <a>Web
+  publications</a> any time, anywhere, regardless of their reading
+  context—specifically, we can give users a 100% Web-based reading experience
+  that remains seamlessly consistent whether the users are online or offline.
+
+  <p>
+  Just through the power of the Web itself, we can give users a truly
+  <i>universal</i> reading experience.
 </section>
 
 <section>
