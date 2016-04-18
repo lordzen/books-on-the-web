@@ -32,6 +32,9 @@
   body {
      margin-bottom: 800px !important;
   }
+  figure {
+    text-align: left !important;
+  }
 </style>
 <script class="remove">
   var respecConfig = {
@@ -50,8 +53,12 @@
           key: "Demo",
           data: [
           {
-            value: "https://lordzen.github.io/offline-book-demo/",
-            href: "https://lordzen.github.io/offline-book-demo/"
+            value: "https://lordzen.github.io/offline-book-demo/readme/",
+            href: "https://lordzen.github.io/offline-book-demo/readme/"
+          },
+          {
+            value: "https://lordzen.github.io/offline-book-demo/treasure-island/",
+            href: "https://lordzen.github.io/offline-book-demo/treasure-island/"
           }]
         },
         {
@@ -247,7 +254,7 @@
   This document introduces a user-focused vision of books as first-class
   citizens of the Web—with off-Web reading systems (beyond normal Web user
   agents) made superfluous, and
-  “<a href=http://w3c.github.io/dpub-pwp/>portable web publications</a>”
+  “<a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications</a>”
   made irrelevant.
   <p>
   The vision presented in this document is one of providing the best
@@ -291,18 +298,92 @@
 
 <section>
   <h2 id="whynow">Why work on this now?</h2>
-  <p>Digital Publishing can be considered to be at a tipping point. Digital publishing formats like EPUB have been broadly adopted globally for trade ebooks, and are starting to gain adoption among textbook publishers as well as corporate marketing departments. However, these formats have largely been seen as “offline” formats up until now. Various browser extensions supporting such complex publications exist, and other solutions are available for delivering these publications in browsers. Browser- and cloud-based solutions require relatively complex server and/or client software. In many cases browser- and cloud-based solutions depend on a proprietary transformation of the packaged files into formats more suitable to network delivery. A focused effort to make digital publications first-class Open Web Platform citizens will result in a significant reduction in the complexity of deploying publishing content into browsers for both online and offline consumption. Further, this focused effort will increase the momentum of digital publication and associated Web adoption across communities who are looking for an open, non-proprietary, next-generation portable document format.</p>
 
-  <p>The broader Web Platform can also be considered to be at a tipping point. Mobile platform web site use is diminishing in favor of native applications. Hybrid applications that use web content alongside native application technology, and web-technology-based system applications are growing. The specific means of delivering hybrid and web-technology-based system applications is currently proprietary to specific applications frameworks and/or browser platforms. The point of Portable Web Publications is to increase problem solving momentum in package, metadata, and offline support applicable to both portable publications and installed applications. Open and native solutions to replace proprietary packaging, metadata, and offline support are intended to ensure the broadest possible general adoption of the Open Web Platform.
-  </p>
+  <p>
+  In June 2013, the W3C launched a new
+  <a href=https://www.w3.org/dpub/IG/wiki/Main_Page>“Digital Publishing” Interest Group</a>
+  with
+  <a href=https://www.w3.org/2015/09/digpubig.html>a charter for the group</a>
+  that states the following goal:
 
-  <p>In many respects, the convergence is already happening. In a number of areas (e.g., educational publications, travel books, etc.) publishers already exploit the advanced possibilities of packaged publishing formats to produce highly interactive documents whose features are very close to what one is used to on the Web (see the separate section <a href="#epub-relations"></a> for some examples). And the converse is also true: tutorial and introductory articles have appeared on the Web that have the quality of traditional publications that one was used to seeing in a scientific magazine, but combined with the interactive possibilities of the Web (<a href="http://bost.ocks.org/mike/algorithms/">Mike Bostock’s article on visualizing algorithms</a> or <a href="http://worrydream.com/LadderOfAbstraction/">Bret Victor’s article on visualization</a> are just two of several possible examples). However, the convergence still has a long way to go, and this is the topic that this document, and the concept of <a>Portable Web Publications</a>, aim to explore.
-  </p>
+
+  <blockquote>
+  <p>
+  <i>the current format- and workflow-level separation between
+  offline/portable and online document publishing should be diminished to
+  zero</i>
+  </blockquote>
+
+  <p>
+  The W3C is now considering proposals for achieving that “zero separation
+  between offline and online” goal for <a>Web publications</a>, and this
+  document outlines a specific concrete technical direction for making that
+  actually happen—for making it a reality, rather just a vision.
+
+  <p>
+  However, the W3C is considering to instead invest organizationally in
+  a contrary direction based on the much vaguer idea of an EPUB-inspired
+  “<a href=https://w3c.github.io/epubweb/>EPUB+WEB</a>”
+  “Portable Web Publication” format as envisioned in
+  <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>,
+  and as illustrated in <a href=#pwp_figure></a>.
 
   <figure id="pwp_figure" style="width: 50rem">
-    <img src="figures/pwp.svg" alt="Image showing a laptop accessing unpackaged multiple files for online use.  With same content packaged for use on a mobile cellphone.">
-    <figcaption>The same content can be turned into an archived file and back without any inherent changes to the core content or associated digital assets. (Picture is available directly <a href="figures/pwp.svg">SVG</a> or <a href="figures/pwp.png">PNG</a> formats.)</figcaption>
+    <img src="figures/pwp.svg"
+     alt="Illustration of conceptial model in which Web content needs to be “packed” and “unpacked” for use on a smartphone.">
+    <figcaption>Flawed conceptual model that assumes needing to “package”
+    and “unpackage” Web publications just to be readable offline or on
+    mobile devices</figcaption>
   </figure>
+
+  <p>
+  It would be a mistake to invest in that or any direction that is based
+  on the assumption that the solution needed is a “portable” document format
+  usable outside of the Web.
+
+  <p>
+  To be very clear about the distinction, a reading system is not part of the Web if:
+
+  <ul>
+    <li>the reading system does not use URLs
+    <li>the reading system does not use the Web security model
+    <li>the reading system requires users to deal with the extra steps of
+    having a “packed” Web publication, copied off its home on the Web,
+    that then needs to be “unpacked” in order for the user to read it
+   </ul>
+
+  <p>
+  Such a reading system is instead just part of the <i>non-</i>Web, and
+  designing any solution for users that optimizes for “portability” to such
+  off-Web reading systems is a mistake. While a document format that is
+  “portable” into such off-Web reading systems may solve problems for
+  constituencies other than users, it is not the right way to provide the
+  best possible user experience for users themselves.
+
+  <p>
+  So instead of designing for “portability”, what’s actually needed is to
+  design for
+  <a href="https://www.w3.org/2002/04/Japan/Lecture.html">universality</a>[[Universality]]—using
+  a true 100% Web-based approach that doesn’t require users to download
+  copies of <a>Web publications</a> in order to read them offline but instead
+  requires nothing more from users than to simply browse to the URL for a
+  <a>Web publication</a> in exactly the same way they normally would, and
+  subsequently just be able to automatically continue to access that
+  <a>Web publication</a> at that same URL regardless of whether they are
+  offline or online.
+
+  <p>
+  Explaining how such
+  <a href=#seamless>seamlessly consistent reading experiences of Web publications</a>
+  can be achieved for users is the purpose of this document—as well as
+  making clear why the direction outlined in this document is a much better
+  solution for providing the best possible user experience to users—and truly
+  achieving the “zero format- and workflow-level separation between offline
+  and online” goal in the
+  <a href=https://www.w3.org/2015/09/digpubig.html>“Digital Publishing” Interest Group charter</a>
+  than is the contrary direction outlined in
+  <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>.
+
 </section>
 
 <section>
@@ -509,9 +590,8 @@
       <p>The Web itself provides the means for both universally and
       confidentially serving snapshot versions of such reports to all
       authenticated users who need access to them. And in contrast to off-Web
-      <a href=http://w3c.github.io/dpub-pwp/>portable web publications</a>,
-      the Web itself—through standard Web features such as TLS
-      (HTTPS) and
+      <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications</a>,
+      the Web itself—through standard Web features such as TLS (HTTPS) and
       <a href=https://w3c.github.io/webappsec-subresource-integrity/>Subresource Integrity</a>—provides
       for any user to fully and independently verify the provenance and
       integrity (against any tampering in transit) of any Web-published
@@ -669,9 +749,9 @@
 
     <p>
     <a href=https://slightlyoff.github.io/ServiceWorker/spec/service_worker/>Service Workers</a>
-    enable such a reading scenario—in which the reading experience remains
-    seamlessly consistent even if the state of the user’s Internet connection
-    changes.
+    enable such a reading scenario—in which the
+    <a href=#seamless>reading experience remains seamlessly consistent</a>
+    even if the state of the user’s Internet connection changes.
 
     <p>
     It seems clear that users would prefer such a Service-Worker-enabled
@@ -685,8 +765,8 @@
   </section>
 </section>
 
-<section>
-  <h2>Achieving seamless reading experiences</h2>
+<section id=seamless>
+  <h2>Enabling seamless reading experiences</h2>
 
   <p>This section provides details of an approach for providing users with
   the best possible user experience of <a>books on the Web</a>, and with
@@ -727,14 +807,19 @@
     a seamless reading experience.
 
     <p>
-    A proof-of-concept demo of a Service-Worker-offline-enabled Web
-    publication is available at the following site:
+    For proof-of-concept demonstrations of Service-Worker-offline-enabled
+    <a>Web publications</a>, see the following:
+
+    <ul>
+    <li><a href="readme/">A simple “readme” document</a> that provides
+    more details and explains how to view the demo content offline.
+    <li><a href="treasure-island/">Robert Louis Stevenson’s <i>Treasure Island</i> as a offline-enabled web book</a>—all
+    34 chapters, plus all 115 of Louis Rhead’s illustrations from the 1915
+    Harper’s edition of the novel.
+    </ul>
 
     <p>
-    <a href=https://lordzen.github.io/offline-book-demo/readme/>https://lordzen.github.io/offline-book-demo/readme/</a>
-
-    <p>
-    That demo is a modified version of an earlier demo developed by
+    Both are based on code from an earlier demo developed by
     <a href=https://twitter.com/jaffathecake>Jake Archibald</a>.
     Jake has also created another demo that uses Service Workers in the
     same way to allow you to create your own custom “book” of Wikipedia pages
@@ -944,8 +1029,7 @@
 
   <p>
   EPUB merits mention here for being the inspiration behind the
-  <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publication</a>
-  idea envisioned in
+  “Portable Web Publication” idea envisioned in
   <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>
   (the original title of which was in fact
   <a href=https://w3c.github.io/epubweb/>EPUB+WEB</a>).
@@ -976,7 +1060,7 @@
   legacy off-Web specialized reading systems—and so going forward into the
   future, there is no need for EPUB as a format, nor more generally for
   any EPUB-inspired
-  <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publication</a>
+  “Portable Web Publication”
   format as envisioned in
   <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>.
 
@@ -1008,8 +1092,7 @@
   new “portable” document format, and in particular no need for an
   EPUB-inspired
   “<a href=https://w3c.github.io/epubweb/>EPUB+WEB</a>”
-  <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publication</a>
-  idea as envisioned in
+  “Portable Web Publication” idea as envisioned in
   <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>.
 
   <p>
@@ -1021,7 +1104,8 @@
   reading experience of <a>books on the Web</a> and other <a>Web
   publications</a> any time, anywhere, regardless of their reading
   context—specifically, we can give users a 100% Web-based reading experience
-  that remains seamlessly consistent whether the users are online or offline.
+  that
+  <a href=#seamless>remains seamlessly consistent whether the users are online or offline</a>.
 
   <p>
   Just through the power of the Web itself, we can give users a truly
