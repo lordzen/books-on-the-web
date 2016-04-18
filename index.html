@@ -29,6 +29,9 @@
     font-style: normal;
     border-bottom: 1px solid #99c !important;
   }
+  .vision a.internalDFN {
+    font-style: italic !important;
+  }
   body {
      margin-bottom: 800px !important;
   }
@@ -40,14 +43,14 @@
   var respecConfig = {
       shortName:            "books-on-the-web",
       subtitle:             "Living Document",
-      edDraftURI:           "https://lordzen.github.io/books-on-the-web",
+      edDraftURI:           "https://lordzen.github.io/books-on-the-web/",
       editors:              [ { name: "🙂" } ],
       specStatus:           "unofficial",
-      maxTocLevel: "2",
-      additionalCopyrightHolders: "Per <a href='https://creativecommons.org/publicdomain/zero/1.0/'>CC0</a>, to the extent possible under law, the editor has waived all copyright and related or neighboring rights to this work. ",
-      copyrightStart: "2016",
-      issueBase: "https://github.com/lordzen/books-on-the-web/issues",
-      noRecTrack : "true",
+      maxTocLevel:          "2",
+      copyrightStart:       "2016",
+      issueBase:            "https://github.com/lordzen/books-on-the-web/issues",
+      noRecTrack:           "true",
+      doRdfa:               "false",
       otherLinks: [
         {
           key: "Demo",
@@ -66,7 +69,7 @@
           data: [
           {
             value: "Github repo",
-            href: "https://github.com/lordzen/books-on-the-web"
+            href: "https://github.com/lordzen/books-on-the-web/"
           },
           {
             value: "Issue tracker",
@@ -78,7 +81,6 @@
           }]
         },
        ],
-     doRdfa: "false",
      localBiblio: {
         "Service-Workers": {
             "authors": [
@@ -112,141 +114,8 @@
             "title": "The publishing industry has a problem, and EPUB is not the solution",
             "href" : "http://toc.oreilly.com/2013/02/the-publishing-industry-has-a-problem-and-epub-is-not-the-solution.html"
         },
-        "OCF": {
-            "authors": [
-              "James Pritchett",
-              "Markus Gylling"
-            ],
-            "title": "EPUB Open Container Format (OCF) 3.0",
-            "href" : "http://www.idpf.org/epub/301/spec/epub-ocf-20140626.html",
-            "rawDate": "2014-06-26",
-            "status" : "Recommended Specification",
-            "publisher": "IDPF"
-        },
-        "EPUBCFI": {
-             "authors": [
-              "Peter Sorotokin",
-              "Garth Conboy",
-              "Brady Duga",
-              "John Rivlin",
-              "Don Beaver",
-              "Kevin Ballard",
-              "Alastair Fettes",
-              "Daniel Weck"
-            ],
-            "title": "EPUB Canonical Fragment Identifier (epubcfi) Specification",
-            "href" : "http://www.idpf.org/epub/linking/cfi/epub-cfi.html",
-            "rawDate": "2014-06-26",
-            "status" : "Recommended Specification",
-            "publisher": "IDPF"
-        },
-        "ODF": {
-            "authors": [
-              "Michael Brauer",
-              "Patrick Durusau",
-              "Gary Edwards",
-              "David Faure",
-              "Tom Magliery",
-              "Daniel Vogelheim"
-            ],
-            "title": "Open Document Format for Office Applications v1.0",
-            "href" : "https://www.oasis-open.org/committees/download.php/12572/OpenDocument-v1.0-os.pdf",
-            "rawDate": "2005-05-01",
-            "status" : "Oasis Standard",
-            "publisher": "Oasis"
-        },
-        "OOXML": {
-            "authors" : [
-              "ECMA International"
-            ],
-             "title": "Office Open XML File Formats, ECMA-376",
-            "href" : "http://www.ecma-international.org/publications/standards/Ecma-376.htm",
-            "rawDate": "2012-12",
-            "status" : "Standard ECMA 376",
-            "publisher": "ECMA"
-        },
-        "web-manifest": {
-          "title": "Manifest for web application",
-          "href" : "https://w3c.github.io/manifest/",
-          "rawDate": "2015-02-23",
-          "status" : "ED",
-          "publisher": "W3C"
-        },
-        "web-packaging": {
-            "authors": [
-              "Jeni Tennison"
-            ],
-            "title": "Packaging on the Web",
-            "href" : "http://www.w3.org/TR/web-packaging/",
-            "rawDate": "2015-01-15",
-            "status" : "WD",
-            "publisher": "W3C"
-        },
-        "ONIX": {
-            "authors": [
-              "EDItEUR"
-            ],
-            "title": "ONIX for Books 3.0.2 Specification",
-            "rawDate": "2014-01-02",
-            "publisher": "EDItEUR"
-        },
-        "Sigarchian" : "Hajar Ghaem Sigarchian et al. <em>EPUB3 for Integrated and Customizable Representation of a Scientific Publication and its Associated Resources</em>. In: Proceedings of the 4th Workshop on Linked Science 2014. URL: <a href='http://linkedscience.org/wp-content/uploads/2014/10/lisc2014_submission_3.pdf'>http://linkedscience.org/wp-content/uploads/2014/10/lisc2014_submission_3.pdf</a>.",
-
-        "BigJava" : "Cay Horstmann. <em>Big Java Late Objects</em>, John Wiley &amp; Sons, Inc., 2013",
-        "web-workers" : {
-            "authors": [
-              "Ian Hickson"
-            ],
-            "title": "Web Workers",
-            "href" : "https://w3c.github.io/workers/",
-            "rawDate": "2014-05-19",
-            "status" : "ED",
-            "publisher": "W3C"
-        },
-        "file-uri-scheme" : {
-          "authors": [
-            "M. Kervin"
-          ],
-          "title": "The file URI Scheme",
-          "href" : "https://tools.ietf.org/html/draft-ietf-appsawg-file-scheme-03",
-          "rawDate": "2015-07-23",
-          "status" : "Internet Draft",
-          "publisher": "IETF"
-        },
-        "CSV" : {
-          "authors" : [
-            "Yakov Shafranovich"
-          ],
-          "title" : "Common Format and MIME Type for Comma-Separated Values (CSV) Files",
-          "href" : "http://tools.ietf.org/html/rfc4180",
-          "rawDate" : "2015-10",
-          "status" : "Informational RFC",
-          "publisher": "IETF"
-        },
-        "ISBN-URN" : {
-          "authors" : [
-            "J. Hakala",
-            "H. Walravens"
-          ],
-          "title" : "Using International Standard Book Numbers as Uniform Resource Names",
-          "href" : "http://tools.ietf.org/html/rfc3187",
-          "rawDate" : "2001-10",
-          "status" : "Informational RFC",
-          "publisher": "IETF"
-        },
-        "UUID" : {
-          "authors" : [
-            "P. Leach",
-            "M. Mealling",
-            "R. Salz"
-          ],
-          "title" : "A Universally Unique IDentifier (UUID) URN Namespace",
-          "href" : "http://tools.ietf.org/html/rfc4122",
-          "rawDate" : "2005-07",
-          "status" : "Informational RFC",
-          "publisher": "IETF"
-        }
       },
+      additionalCopyrightHolders: "Per <a href='https://creativecommons.org/publicdomain/zero/1.0/'>CC0</a>, to the extent possible under law, the editor has waived all copyright and related or neighboring rights to this work. ",
   };
 </script>
 <section id="abstract">
@@ -289,11 +158,40 @@
 <section>
   <h2 id="introduction">Our Vision</h2>
 
-  <p class="vision">Our vision for <a>Portable Web Publications</a> is to define a class of documents on the Web that would be part of the Digital Publishing ecosystem but would also be fully native citizens of the <a href="https://www.w3.org/wiki/Open_Web_Platform">Open Web Platform</a>.  In this vision, the current format- and workflow-level separation between offline/portable and online (Web) document publishing is diminished to zero. These are merely two dynamic manifestations of the same publication: content authored with online use as the primary mode can easily be saved by the user for offline reading in portable document form. Content authored primarily for use as a portable document can be put online, without any need for refactoring the content. Publishers can choose to utilize either or both of these publishing modes, and users can choose either or both of these consumption modes. Essential features flow seamlessly between online and offline modes; examples include cross-references, user annotations, access to online databases, as well as licensing and rights management.
-  </p>
+  <div class="vision">
+  <p>
+  Our vision of <a>Books on the Web</a> is for <a>Web books</a> to become
+  true first-class citizens of the Web, with user needs given the very
+  highest priority and thus with the focus on enabling the absolute best
+  possible user experience for readers of <a>Web books</a> and other
+  <a>Web publications</a>, by providing users with a
+  <a href=#seamless>seamless reading experience that remains consistent
+  even if the state of a user’s Internet connection changes</a>—so that
+  users can just always continue reading right on the Web, regardless of
+  whether the users are offline or online.
 
-  <p>The precise definition of <a>Portable Web Publications</a> is provided in the section <a href='#pwp_definition'></a>. For the sake of this introduction, suffices to say that a <a>Portable Web Publication</a> is a collection of content items (e.g. pages, chapters, modules, articles) whose content is compatible with Web usage, and structured as a single, self-contained logical unit. Individual items can consist of text, images, graphics, possibly interactive mathematical or chemical formulae, as well as audio and video. These documents, by definition, have a default, linear “reading order”, however the user may choose to skip around in the content just as with a book on paper; alternatively, interactive aspects of the content may alter the reading order on behalf of the user.
-  </p>
+  <p>
+  We believe that such a
+  <a href=#seamless>seamless reading experience for users</a>,
+  using a truly 100% Web-based approach, is very clearly the right way to
+  achieve a
+  <a href=https://www.w3.org/2015/09/digpubig.html>“zero format- and
+  workflow-level separation between offline and online”</a> goal.
+
+  <p>
+  Further, we believe it is clear that “zero separation between offline
+  and online” goal can be met without any kind of
+  <a href=http://w3c.github.io/dpub-pwp/>“Portable Web Publication”</a>
+  format, and in fact without resort in any way to the notion of
+  “portability”—but instead based just on the Web’s fundamental quality of
+  <a href="https://www.w3.org/2002/04/Japan/Lecture.html">Universality</a>[[Universality]],
+  never requiring users to download copies of <a>Web publications</a>
+  in order to read them offline but instead requiring nothing more from users
+  than to simply browse to the URL for a <a>Web publication</a> in exactly
+  the same way they normally would, and subsequently just be able to
+  automatically continue to access that <a>Web publication</a> at that same
+  URL regardless of whether they are offline or online. In other words, a
+  truly <b>universal</b> reading experience.
 </section>
 
 <section>
@@ -357,8 +255,8 @@
   designing any solution for users that optimizes for “portability” to such
   off-Web reading systems is a mistake. While a document format that is
   “portable” into such off-Web reading systems may solve problems for
-  constituencies other than users, it is not the right way to provide the
-  best possible user experience for users themselves.
+  constituencies other than users, it is absolutely not the right way to
+  provide the best possible user experience for users themselves.
 
   <p>
   So instead of designing for “portability”, what’s actually needed is to
@@ -380,8 +278,8 @@
   solution for providing the best possible user experience to users—and truly
   achieving the “zero format- and workflow-level separation between offline
   and online” goal in the
-  <a href=https://www.w3.org/2015/09/digpubig.html>“Digital Publishing” Interest Group charter</a>
-  than is the contrary direction outlined in
+  <a href=https://www.w3.org/2015/09/digpubig.html>“Digital Publishing” Interest Group charter</a>—than
+  is the contrary direction outlined in
   <a href=http://w3c.github.io/dpub-pwp/>Portable Web Publications for the Open Web Platform</a>.
 
 </section>
@@ -451,14 +349,12 @@
       of the Web means publishers can concentrate on engaging content
       authors in the production of high quality content.
 
-      <p>The web-content development community can be relied on to deal
-      with sophisticated technical issues (e.g., CSS, SVG). Potential
-      future web content formats (e.g., 3D rendering) and various
-      interactive web programs (e.g., visualization tools like <a
-      href="http://d3js.org">D3</a>) will naturally flow into the publishing
-      realm by moving to a user-first model of <a>books on the Web</a>, hence
-      increasing publishers’ opportunities to sell new content products
-      across the board.</p>
+      <p>Along with familiar, established Web technologies such as CSS and
+      SVG, support for technologies enabling features such as 3D rendering
+      (and even visualization tools such as <a href="http://d3js.org">D3</a>)
+      will naturally flow into the publishing realm by moving to a user-first
+      model of <a>books on the Web</a>, hence increasing publishers’
+      opportunities to sell new content products across the board.</p>
 
       <p>Realizing new opportunities is a reality for publishers
       traditionally considered to be on the leading edge of technological
@@ -562,7 +458,7 @@
       the arrival of highly dynamic and possibly interactive <a>Web publications</a>
       as primary content, the traditional means of archiving (i.e., storing on some
       backup device for long term preservation) is no longer adequate.
-      <>Web publications</a> depend on a multitude of auxiliary files, like CSS
+      <a>Web publications</a> depend on a multitude of auxiliary files, like CSS
       stylesheets, images, videos, JavaScript programs, etc. The good news is
       that the Web itself already provides the means for archiving such
       publications, and there will be large growth in business opportunities
@@ -613,7 +509,7 @@
     <ul class="definition">
       <li>
       <p>The term
-      <dfn data-lt="books on the Web|book on the Web|Web book">Books on the Web</dfn>
+      <dfn data-lt="books on the Web|book on the Web|Web book|web books">Books on the Web</dfn>
       itself is chosen to convey, in the clearest and simplest possible
       way, that a Web book is simply just a website, or a subdirectory or
       path within a website, with a Web URL from which the book is made
@@ -811,9 +707,9 @@
     <a>Web publications</a>, see the following:
 
     <ul>
-    <li><a href="readme/">A simple “readme” document</a> that provides
+    <li><a href="https://lordzen.github.io/offline-book-demo/readme/">A simple “readme” document</a> that provides
     more details and explains how to view the demo content offline.
-    <li><a href="treasure-island/">Robert Louis Stevenson’s <i>Treasure Island</i> as a offline-enabled web book</a>—all
+    <li><a href="https://lordzen.github.io/offline-book-demo/treasure-island/">Robert Louis Stevenson’s <i>Treasure Island</i> as a offline-enabled web book</a>—all
     34 chapters, plus all 115 of Louis Rhead’s illustrations from the 1915
     Harper’s edition of the novel.
     </ul>
